@@ -1,10 +1,15 @@
 const express = require('express');
 const app = express();
-const serverless = require('serverless-http'); 
+const port = process.env.PORT || 3000;
 
-app.get('/', (req, res) => {
-  res.send('Hello from Express on Vercel!');
+// Serve static files (like index.html)
+app.use(express.static('public'));
+
+// Simple API endpoint
+app.get('/api/hello', (req, res) => {
+  res.json({ message: 'Hello from Express!' });
 });
 
-module.exports = app;
-module.exports.handler = serverless(app);
+app.listen(port, () => {
+  console.log(`Server running on http://localhost:${port}`);
+});
