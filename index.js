@@ -1,11 +1,10 @@
 const express = require('express');
 const app = express();
-const PORT = process.env.PORT || 3000;
+const serverless = require('serverless-http'); // wrap Express
 
 app.get('/', (req, res) => {
-  res.send('Hello from Express!');
+  res.send('Hello from Express on Vercel!');
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+module.exports = app;
+module.exports.handler = serverless(app);
