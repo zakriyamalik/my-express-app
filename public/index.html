@@ -1,19 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <title>Simple Express Frontend</title>
+  <title>Vercel Hello</title>
 </head>
 <body>
-  <h1>Call API</h1>
-  <button onclick="callApi()">Click Me</button>
+  <h1>Hello Vercel Frontend</h1>
+  <button onclick="callApi()">Call API</button>
   <pre id="output"></pre>
 
   <script>
     async function callApi() {
-      const res = await fetch('/api/hello');
-      const data = await res.json();
-      document.getElementById('output').textContent = JSON.stringify(data, null, 2);
+      try {
+        const res = await fetch('/api/hello');
+        const data = await res.json();
+        document.getElementById('output').textContent = JSON.stringify(data, null, 2);
+      } catch (err) {
+        document.getElementById('output').textContent = 'Error: ' + err.message;
+      }
     }
   </script>
 </body>
